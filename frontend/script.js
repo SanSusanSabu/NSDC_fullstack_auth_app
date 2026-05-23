@@ -1,7 +1,7 @@
 // BACKEND API URL
 
 const BASE_URL =
-"http://nsdc-fullstack-auth-app.vercel.app/api/v1/users";
+"http://localhost:3000/api/v1/users";
 
 // FORM TYPE
 
