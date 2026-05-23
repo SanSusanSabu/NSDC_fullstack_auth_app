@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    }
+
+    .container{
+      width:400px;
+      background:#fff;
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .container h2{
+      text-align:center;
+      margin-bottom:25px;
+      color:#333;
+    }
+
+    .input-group{
+      margin-bottom:18px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:6px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .input-group input{
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      transition:0.3s;
+    }
+
+    .input-group input:focus{
+      border-color:#2c5364;
+      box-shadow:0 0 5px rgba(44,83,100,0.4);
+    }
+
+    .btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#2c5364;
+      color:#fff;
+      border-radius:8px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#203a43;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:15px;
+      font-size:14px;
+      color:#555;
+    }
+
+    .footer a{
+      color:#2c5364;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .error{
+      color:red;
+      font-size:13px;
+      margin-top:5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+
+        <!-- 
+          Validation:
+          First letter capital
+          Can contain digits
+          Minimum 6 characters
+        -->
+        <input 
+          type="password"
+          id="password"
+          placeholder="Create password"
+          pattern="^[A-Z][A-Za-z0-9]{5,}$"
+          required
+        >
+
+        <div class="error">
+          Password must start with a capital letter and contain at least 6 characters.
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Phone Number</label>
+
+        <!-- Exactly 10 digits -->
+        <input 
+          type="tel"
+          id="phone"
+          placeholder="Phone number"
+          pattern="[0-9]{10}"
+          maxlength="10"
+          required
+        >
+
+        <div class="error">
+          Phone number must contain exactly 10 digits.
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Register</button>
+    </form>
+
+    <div class="footer">
+      Already have an account?
+      <a href="/login">Login</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
+
+      // Phone validation
+      const phonePattern = /^[0-9]{10}$/;
+
+      // Password validation
+      // First letter capital + letters/digits allowed
+      const passwordPattern = /^[A-Z][A-Za-z0-9]{5,}$/;
+
+      if (!phonePattern.test(phone)) {
+        alert("Phone number must contain exactly 10 digits.");
+        event.preventDefault();
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        alert("Password must start with a capital letter and be at least 6 characters long.");
+        event.preventDefault();
+        return;
+      }
+
+      alert("Registration Successful!");
+    });
+  </script>
+
+</body>
+</html>
